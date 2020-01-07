@@ -3,7 +3,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <com.allever.handcoderdemo.draw.MyCustomView
+    <com.allever.handcoderdemo.draw.PorterDuffXfermodeView
         android:id="@+id/myCustomView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

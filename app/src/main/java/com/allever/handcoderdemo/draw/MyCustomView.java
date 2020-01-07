@@ -3,11 +3,17 @@ package com.allever.handcoderdemo.draw;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.SweepGradient;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
@@ -58,9 +64,12 @@ public class MyCustomView extends View {
         mPaint = new Paint();
         //抗锯齿参数方式创建
 //        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
-        mPaint.setAntiAlias(true);//抗锯齿
-        mPaint.setStyle(Paint.Style.FILL);//FILL->实心, STROKE->空心, FILL_AND_STROKE->????
-        mPaint.setStrokeWidth(10);//边框, 在内容外部区域绘制
+        //抗锯齿
+        mPaint.setAntiAlias(true);
+        //FILL->实心, STROKE->空心, FILL_AND_STROKE->????
+        mPaint.setStyle(Paint.Style.FILL);
+        //边框, 在内容外部区域绘制
+        mPaint.setStrokeWidth(10);
         mPaint.setColor(getContext().getResources().getColor(R.color.colorPrimary));
 
         mRect = new Rect(
@@ -112,6 +121,7 @@ public class MyCustomView extends View {
         drawBitmap(canvas);
 
         drawText(canvas);
+
     }
 
     private void drawPath(Canvas canvas) {
@@ -126,8 +136,13 @@ public class MyCustomView extends View {
     }
 
     private void drawCircle(Canvas canvas) {
-        //绘制圆形
         float margin = 20;
+
+        RadialGradient radialGradient = new RadialGradient(50f, 50f + margin, 50f, Color.parseColor("#ff0000"), Color.parseColor("#000000"), Shader.TileMode.CLAMP);
+//        SweepGradient sweepGradient = new SweepGradient(50f, 50f + margin, Color.parseColor("#ff0000"), Color.parseColor("#000000"));
+        //绘制圆形
+        mPaint.setShader(radialGradient);
+
 //        canvas.drawCircle(50f, 50f + margin, 50f, mPaint);
 
         // Direction 是画圆的路径的方向。
@@ -137,6 +152,7 @@ public class MyCustomView extends View {
         mPath.reset();
         mPath.addCircle(50f, 50f + margin, 50f, Path.Direction.CW);
         canvas.drawPath(mPath, mPaint);
+        mPaint.setShader(null);
     }
 
     private void drawColor(Canvas canvas) {
@@ -149,11 +165,18 @@ public class MyCustomView extends View {
 
     private void drawRect(Canvas canvas) {
         //绘制矩形
+        LinearGradient linearGradient = new LinearGradient(
+                100 + sMargin, sMargin + 0,
+                100 + sMargin + 200, sMargin + 100,
+                Color.parseColor("#ff0000"), Color.parseColor("#000000"), Shader.TileMode.CLAMP
+        );
+        mPaint.setShader(linearGradient);
         canvas.drawRect(100 + sMargin, sMargin, 100 + sMargin + 200, sMargin + 100, mPaint);
 //        mRect = new Rect(100 + sMargin, sMargin, 100 + sMargin + 200, sMargin + 100);
 //        canvas.drawRect(mRect,mPaint);
 //        mRectF = new Rect(100 + sMargin, sMargin, 100 + sMargin + 200, sMargin + 100);
 //        canvas.drawRect(mRectF, mPaint);
+        mPaint.setShader(null);
     }
 
     private void drawPoint(Canvas canvas) {
@@ -170,11 +193,14 @@ public class MyCustomView extends View {
     }
 
     private void drawOval(Canvas canvas) {
+        SweepGradient sweepGradient = new SweepGradient(450 + sMargin * 3 + sMargin + 75, sMargin + 50, Color.parseColor("#ff0000"), Color.parseColor("#000000"));
+        mPaint.setShader(sweepGradient);
         //画椭圆
         mPaint.setStrokeWidth(0);
         //高版本api 21
 //        canvas.drawOval(450 + sMargin * 3 + sMargin, sMargin, 450 + sMargin * 3 + sMargin + 150, sMargin + 100, mPaint);
         canvas.drawOval(mOvalRect, mPaint);
+        mPaint.setShader(null);
     }
 
     private void drawLine(Canvas canvas) {
@@ -197,6 +223,9 @@ public class MyCustomView extends View {
     }
 
     private void drawRoundRect(Canvas canvas) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.logo);
+        BitmapShader bitmapShader = new BitmapShader(bitmap, Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+        mPaint.setShader(bitmapShader);
         //绘制圆角矩形
         mPaint.setStrokeWidth(0);
         //高版本api 21
@@ -206,6 +235,7 @@ public class MyCustomView extends View {
         //rx->圆角横向半径， ry->圆角纵向半径, 随便一个填0， 四个角都看不到圆角效果, 可能理解错了
         int radius = 10;
         canvas.drawRoundRect(mRoundRectF, radius, radius, mPaint);
+        mPaint.setShader(null);
     }
 
     //绘制扇形
