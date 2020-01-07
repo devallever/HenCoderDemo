@@ -5,10 +5,14 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import com.allever.handcoderdemo.draw.CustomDrawActivity
+import com.allever.handcoderdemo.draw.PorterDuffXfermodeDemoActivity
+import com.allever.lib.common.util.ActivityCollector
 
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +23,9 @@ class MainActivity : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
+
+        findViewById<View>(R.id.drawDemo).setOnClickListener(this)
+        findViewById<View>(R.id.cutDemo).setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -36,4 +43,17 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    override fun onClick(v: View?) {
+        when(v?.id) {
+            R.id.drawDemo -> {
+                ActivityCollector.startActivity(this, CustomDrawActivity::class.java)
+            }
+            R.id.cutDemo -> {
+                ActivityCollector.startActivity(this, PorterDuffXfermodeDemoActivity::class.java)
+            }
+        }
+
+    }
+
 }
