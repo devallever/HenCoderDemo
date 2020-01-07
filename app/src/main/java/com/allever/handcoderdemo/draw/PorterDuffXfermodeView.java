@@ -12,6 +12,7 @@ import android.graphics.RectF;
 import android.graphics.Xfermode;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import androidx.annotation.Nullable;
@@ -60,9 +61,17 @@ public class PorterDuffXfermodeView extends View {
         srcBmp = BitmapFactory.decodeResource(getResources(), R.mipmap.source);
         mXfermode = new PorterDuffXfermode(mPorterDuffMode);
     }
+
+    public void setMode(PorterDuff.Mode mode) {
+        mPorterDuffMode = mode;
+        mXfermode = new PorterDuffXfermode(mode);
+        invalidate();
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        Log.d("ILogger", "onDraw: ");
         //背景色设为白色，方便比较效果
         canvas.drawColor(Color.WHITE);
         //将绘制操作保存到新的图层，因为图像合成是很昂贵的操作，将用到硬件加速，这里将图像合成的处理放到离屏缓存中进行
