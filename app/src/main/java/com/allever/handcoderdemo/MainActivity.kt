@@ -11,6 +11,7 @@ import com.allever.handcoderdemo.draw.PorterDuffXfermodeDemoActivity
 import com.allever.lib.common.util.ActivityCollector
 
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
@@ -26,6 +27,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         findViewById<View>(R.id.drawDemo).setOnClickListener(this)
         findViewById<View>(R.id.cutDemo).setOnClickListener(this)
+        btnCircleImageView.setOnClickListener(this)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -51,6 +53,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.cutDemo -> {
                 ActivityCollector.startActivity(this, PorterDuffXfermodeDemoActivity::class.java)
+            }
+            R.id.btnCircleImageView -> {
+                ActivityCollector.startActivity(this, CircleImageViewActivity::class.java)
             }
         }
 

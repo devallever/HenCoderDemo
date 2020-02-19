@@ -23,6 +23,7 @@
 
         <activity android:name=".draw.PorterDuffXfermodeDemoActivity"/>
         <activity android:name=".draw.CustomDrawActivity"/>
+        <activity android:name=".CircleImageViewActivity"/>
     </application>
 
 </manifest>

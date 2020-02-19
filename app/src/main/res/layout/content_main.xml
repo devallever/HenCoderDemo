@@ -24,6 +24,13 @@
             android:layout_height="wrap_content"
             android:text="裁减Demo"/>
 
+        <Button
+            android:id="@+id/btnCircleImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="圆形ImageView"/>
+
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

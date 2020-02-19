@@ -9,6 +9,8 @@ import android.graphics.Color;
 import android.graphics.LinearGradient;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.RadialGradient;
 import android.graphics.Rect;
 import android.graphics.RectF;
@@ -99,6 +101,7 @@ public class MyCustomView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        log("onDraw");
 
         drawCircle(canvas);
 
@@ -114,7 +117,7 @@ public class MyCustomView extends View {
 
         drawRoundRect(canvas);
 
-        drawArc(canvas);
+//        drawArc(canvas);
 
         drawPath(canvas);
 
@@ -277,7 +280,9 @@ public class MyCustomView extends View {
 
     private void drawText(Canvas canvas) {
         mPaint.setTextSize(DisplayUtils.INSTANCE.dip2px(20));
+        mPaint.setColor(Color.parseColor("#ff0000"));
         canvas.drawText("HelloWorld, 你好，Android", sMargin, 800, mPaint);
+//        canvas.drawText("HelloWorld, 你好，Android", 0, 0, mPaint);
     }
 
     private void log(String msg) {
