@@ -3,6 +3,7 @@
     package="com.allever.handcoderdemo">
 
     <application
+        android:name="com.allever.lib.common.app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
