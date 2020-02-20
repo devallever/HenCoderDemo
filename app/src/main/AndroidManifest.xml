@@ -25,6 +25,7 @@
         <activity android:name=".draw.PorterDuffXfermodeDemoActivity"/>
         <activity android:name=".draw.CustomDrawActivity"/>
         <activity android:name=".CircleImageViewActivity"/>
+        <activity android:name=".SearchViewActivity"/>
     </application>
 
 </manifest>

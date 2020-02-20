@@ -28,6 +28,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         findViewById<View>(R.id.drawDemo).setOnClickListener(this)
         findViewById<View>(R.id.cutDemo).setOnClickListener(this)
         btnCircleImageView.setOnClickListener(this)
+        btnSearchView.setOnClickListener(this)
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -56,6 +58,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btnCircleImageView -> {
                 ActivityCollector.startActivity(this, CircleImageViewActivity::class.java)
+            }
+            R.id.btnSearchView -> {
+                ActivityCollector.startActivity(this, SearchViewActivity::class.java)
             }
         }
 
