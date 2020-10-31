@@ -29,6 +29,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         findViewById<View>(R.id.cutDemo).setOnClickListener(this)
         btnCircleImageView.setOnClickListener(this)
         btnSearchView.setOnClickListener(this)
+        btnAutoTat.setOnClickListener(this)
 
     }
 
@@ -61,6 +62,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
             R.id.btnSearchView -> {
                 ActivityCollector.startActivity(this, SearchViewActivity::class.java)
+            }
+            R.id.btnAutoTat -> {
+                ActivityCollector.startActivity(this, AutoTagActivity::class.java)
             }
         }
 

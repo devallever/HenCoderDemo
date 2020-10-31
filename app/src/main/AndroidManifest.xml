@@ -26,6 +26,7 @@
         <activity android:name=".draw.CustomDrawActivity"/>
         <activity android:name=".CircleImageViewActivity"/>
         <activity android:name=".SearchViewActivity"/>
+        <activity android:name=".AutoTagActivity"/>
     </application>
 
 </manifest>
